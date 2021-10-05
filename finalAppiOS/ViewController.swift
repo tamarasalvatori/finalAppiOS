@@ -9,9 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let defaults = UserDefaults.standard
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let userLogged = defaults.bool(forKey: "UserLogged")
+
+        if userLogged == true {
+            present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeStoryboard"), animated: true, completion: nil)
+        }
     }
 
     func isValidEmail(_ email: String) -> Bool {
@@ -25,16 +32,16 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var passwordText: UITextField!
 
-
     @IBAction func pressedButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewCont = storyboard.instantiateViewController(withIdentifier: "homeStoryboard")
 
-        var email = emailText.text!
-        var password = passwordText.text!
+        let email = emailText.text!
+        let password = passwordText.text!
 
         if (isValidEmail(email) == true) {
             self.present(viewCont, animated: true, completion: nil)
+            defaults.set(true, forKey: "UserLogged")
         } else {
 
             let alert = UIAlertController(title: "Login error", message: "You should type valid email and password", preferredStyle: UIAlertController.Style.alert)
@@ -46,9 +53,7 @@ class ViewController: UIViewController {
             alert.addAction(okBtn)
 
             self.present(alert, animated: true, completion: nil)
-
         }
-
     }
 }
 

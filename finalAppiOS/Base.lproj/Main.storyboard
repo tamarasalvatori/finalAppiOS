@@ -92,9 +92,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4b-4i-WDy">
-                                <rect key="frame" x="163" y="438" width="88" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4b-4i-WDy">
+                                <rect key="frame" x="163" y="437.5" width="88" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -102,6 +101,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XAD-oL-7hA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="D4b-4i-WDy" firstAttribute="centerY" secondItem="Bbh-lb-x5q" secondAttribute="centerY" id="UAU-eh-NHh"/>
+                            <constraint firstItem="D4b-4i-WDy" firstAttribute="centerX" secondItem="Bbh-lb-x5q" secondAttribute="centerX" id="z0p-Dg-iD7"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="s9H-fp-4sZ"/>
                 </viewController>
