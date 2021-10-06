@@ -9,21 +9,23 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    let defaults = UserDefaults.standard
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        logoutBtn.layer.cornerRadius = 5
     }
-    
 
-    /*
-    // MARK: - Navigation
+    @IBOutlet weak var logoutBtn: UIButton!
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func logoutBtnPressed(_ sender: UIButton) {
+
+        defaults.set(false, forKey: "LoggedUser")
+
+        logout()
     }
-    */
 
+    func logout() {
+        present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginStoryboard"), animated: true, completion: nil)
+    }
 }

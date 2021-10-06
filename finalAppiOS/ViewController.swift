@@ -14,10 +14,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let userLogged = defaults.bool(forKey: "UserLogged")
+        let loggedUser = defaults.bool(forKey: "LoggedUser")
 
-        if userLogged == true {
-            present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeStoryboard"), animated: true, completion: nil)
+        if loggedUser == true {
+            goToHome()
+        }
+    }
+
+    @IBOutlet weak var emailText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
+
+    @IBAction func pressedButton(_ sender: UIButton) {
+
+        let email = emailText.text!
+        let password = passwordText.text
+
+        if (isValidEmail(email) == true && password != "") {
+            goToHome()
+            defaults.set(true, forKey: "LoggedUser")
+        } else {
+            displayAlert()
         }
     }
 
@@ -28,32 +44,20 @@ class ViewController: UIViewController {
         return emailPred.evaluate(with: email)
     }
 
-    @IBOutlet weak var emailText: UITextField!
+    func displayAlert() {
+        let alert = UIAlertController(title: "Erro ao tentar fazer login", message: "Você deve digitar um email válido e uma senha ", preferredStyle: UIAlertController.Style.alert)
 
-    @IBOutlet weak var passwordText: UITextField!
+        let okBtn = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) { (UIAlertAction) in }
 
-    @IBAction func pressedButton(_ sender: UIButton) {
+        alert.addAction(okBtn)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func goToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewCont = storyboard.instantiateViewController(withIdentifier: "homeStoryboard")
 
-        let email = emailText.text!
-        let password = passwordText.text!
-
-        if (isValidEmail(email) == true) {
-            self.present(viewCont, animated: true, completion: nil)
-            defaults.set(true, forKey: "UserLogged")
-        } else {
-
-            let alert = UIAlertController(title: "Login error", message: "You should type valid email and password", preferredStyle: UIAlertController.Style.alert)
-
-            let okBtn = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {
-                (UIAlertAction) in
-            }
-
-            alert.addAction(okBtn)
-
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.present(viewCont, animated: true, completion: nil)
     }
 }
 
